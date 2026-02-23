@@ -44,8 +44,8 @@
       text-align: center;
       padding: 80px 24px 70px;
       background:
-        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(45,212,191,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(192,132,252,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(251,146,60,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(251,100,30,0.08) 0%, transparent 50%),
         var(--bg);
       position: relative;
     }
@@ -55,7 +55,7 @@
       font-weight: 900;
       letter-spacing: -2px;
       line-height: 1.05;
-      background: linear-gradient(140deg, #e0faf7 10%, var(--teal) 45%, var(--purple) 90%);
+      background: linear-gradient(140deg, #fff3e0 10%, var(--orange) 45%, #f43f5e 90%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -115,7 +115,7 @@
     .c-teal .card-accent { background: var(--teal); box-shadow: 0 0 12px var(--teal-glow); }
     .c-orange .card-accent { background: var(--orange); box-shadow: 0 0 12px var(--orange-glow); }
     .c-purple .card-accent { background: var(--purple); box-shadow: 0 0 12px var(--purple-glow); }
-    .c-white .card-accent { background: linear-gradient(90deg, var(--teal), var(--purple)); }
+    .c-white .card-accent { background: linear-gradient(90deg, var(--orange), #f43f5e); }
 
     .card-label {
       font-size: 11px;
@@ -223,7 +223,7 @@
 <body>
 
 <div class="hero">
-  <div class="hero-emoji">🇪🇸</div>
+  <div class="hero-emoji">🇦🇷</div>
   <h1>2025 Spanish<br>Recap</h1>
   <p class="hero-sub">A year of listening, reading &amp; speaking in numbers</p>
 </div>
@@ -239,8 +239,8 @@
     <h3>Minutes by Month</h3>
     <p class="panel-sub">Total practice per skill each month</p>
     <div class="legend">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div>Listening</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div>Reading</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div>Listening</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div>Reading</div>
       <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>Speaking</div>
     </div>
     <div class="chart-box" style="height:300px">
@@ -722,13 +722,13 @@ Papa.parse(CSV, {
 
     // ── Stat cards ──────────────────────────────────────────
     document.getElementById('stat-cards').innerHTML = `
-      <div class="card c-teal">
+      <div class="card c-orange">
         <div class="card-accent"></div>
         <div class="card-label">Listening</div>
         <div class="card-value">${fmtH(totalL)}</div>
         <div class="card-sub">${totalL.toLocaleString()} min · ${lActiveDays} days</div>
       </div>
-      <div class="card c-orange">
+      <div class="card c-teal">
         <div class="card-accent"></div>
         <div class="card-label">Reading</div>
         <div class="card-value">${fmtH(totalR)}</div>
@@ -760,7 +760,7 @@ Papa.parse(CSV, {
         <div class="ms-icon">🏆</div>
         <div>
           <div class="ms-label">Best Single Day</div>
-          <div class="ms-value" style="color:var(--teal)">${bestDay.listening} min</div>
+          <div class="ms-value" style="color:var(--orange)">${bestDay.listening} min</div>
           <div class="ms-detail">${bestDay.month} ${bestDay.day}</div>
         </div>
       </div>
@@ -768,7 +768,7 @@ Papa.parse(CSV, {
         <div class="ms-icon">📅</div>
         <div>
           <div class="ms-label">Best Month</div>
-          <div class="ms-value" style="color:var(--teal)">${bestMonth}</div>
+          <div class="ms-value" style="color:var(--orange)">${bestMonth}</div>
           <div class="ms-detail">${byMonth[bestMonth].L.toLocaleString()} listening min</div>
         </div>
       </div>
@@ -784,7 +784,7 @@ Papa.parse(CSV, {
         <div class="ms-icon">📊</div>
         <div>
           <div class="ms-label">Avg on Active Days</div>
-          <div class="ms-value" style="color:var(--teal)">${Math.round(totalL / lActiveDays)} min</div>
+          <div class="ms-value" style="color:var(--orange)">${Math.round(totalL / lActiveDays)} min</div>
           <div class="ms-detail">listening per active day</div>
         </div>
       </div>
@@ -792,7 +792,7 @@ Papa.parse(CSV, {
         <div class="ms-icon">⚡</div>
         <div>
           <div class="ms-label">Year Avg / Day</div>
-          <div class="ms-value" style="color:var(--purple)">${Math.round(totalL / daysTracked)} min</div>
+          <div class="ms-value" style="color:var(--orange)">${Math.round(totalL / daysTracked)} min</div>
           <div class="ms-detail">listening across all 366 days</div>
         </div>
       </div>
@@ -813,8 +813,8 @@ Papa.parse(CSV, {
       return `
         <div class="month-cell">
           <div class="mc-name">${m}</div>
-          <div class="mc-row"><span>Listening</span><span style="color:var(--teal)">${d.L.toLocaleString()} min</span></div>
-          ${d.R > 0 ? `<div class="mc-row"><span>Reading</span><span style="color:var(--orange)">${d.R.toLocaleString()} min</span></div>` : ''}
+          <div class="mc-row"><span>Listening</span><span style="color:var(--orange)">${d.L.toLocaleString()} min</span></div>
+          ${d.R > 0 ? `<div class="mc-row"><span>Reading</span><span style="color:var(--teal)">${d.R.toLocaleString()} min</span></div>` : ''}
           ${d.S > 0 ? `<div class="mc-row"><span>Speaking</span><span style="color:var(--purple)">${d.S.toLocaleString()} min</span></div>` : ''}
           <div class="mc-row" style="margin-top:6px;border-top:1px solid rgba(255,255,255,0.05);padding-top:6px">
             <span>Total</span><span>${fmtHM(total)}</span>
@@ -830,8 +830,8 @@ Papa.parse(CSV, {
       data: {
         labels: MONTH_SHORT,
         datasets: [
-          { label: 'Listening', data: MONTHS.map(m => byMonth[m].L), backgroundColor: 'rgba(45,212,191,0.85)', borderRadius: 5, borderSkipped: false },
-          { label: 'Reading',   data: MONTHS.map(m => byMonth[m].R), backgroundColor: 'rgba(251,146,60,0.85)',  borderRadius: 5, borderSkipped: false },
+          { label: 'Listening', data: MONTHS.map(m => byMonth[m].L), backgroundColor: 'rgba(251,146,60,0.85)',  borderRadius: 5, borderSkipped: false },
+          { label: 'Reading',   data: MONTHS.map(m => byMonth[m].R), backgroundColor: 'rgba(45,212,191,0.85)', borderRadius: 5, borderSkipped: false },
           { label: 'Speaking',  data: MONTHS.map(m => byMonth[m].S), backgroundColor: 'rgba(192,132,252,0.85)', borderRadius: 5, borderSkipped: false },
         ]
       },
@@ -863,7 +863,7 @@ Papa.parse(CSV, {
     // Alternate shade per month
     const barColors = rows.map(r => {
       const idx = MONTHS.indexOf(r.month);
-      return idx % 2 === 0 ? 'rgba(45,212,191,0.80)' : 'rgba(45,212,191,0.50)';
+      return idx % 2 === 0 ? 'rgba(251,146,60,0.85)' : 'rgba(251,146,60,0.55)';
     });
 
     new Chart(dailyCanvas, {
@@ -899,11 +899,11 @@ Papa.parse(CSV, {
         datasets: [{
           label: 'Total hours',
           data: cumData,
-          borderColor: '#2dd4bf',
+          borderColor: '#fb923c',
           backgroundColor: ctx => {
             const g = ctx.chart.ctx.createLinearGradient(0, 0, 0, 260);
-            g.addColorStop(0, 'rgba(45,212,191,0.25)');
-            g.addColorStop(1, 'rgba(45,212,191,0)');
+            g.addColorStop(0, 'rgba(251,146,60,0.30)');
+            g.addColorStop(1, 'rgba(251,146,60,0)');
             return g;
           },
           borderWidth: 2.5,
