@@ -5,82 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2025 Spanish Recap</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <style>
     :root {
-      --bg: #0a0a0f;
-      --surface: #13131a;
-      --surface2: #1c1c26;
-      --border: rgba(255,255,255,0.07);
-      --text: #ededf5;
-      --muted: #7070888;
-      --teal: #2dd4bf;
-      --teal-glow: rgba(45,212,191,0.18);
-      --orange: #fb923c;
-      --orange-glow: rgba(251,146,60,0.18);
-      --purple: #c084fc;
-      --purple-glow: rgba(192,132,252,0.18);
+      --bg: #FAF0E6;
+      --surface: #FFFDF5;
+      --surface2: #F0E2CC;
+      --border: #2C1810;
+      --shadow: 4px 4px 0 #2C1810;
+      --text: #2C1810;
+      --muted: #8B6E4E;
+      --teal: #5BBFB5;
+      --orange: #F4956A;
+      --purple: #B89FD8;
+      --yellow: #FFD97D;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'Space Mono', 'Courier New', monospace;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
     }
 
     /* ─── Hero ─── */
     .hero {
-      min-height: 420px;
+      min-height: 380px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 80px 24px 70px;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(251,146,60,0.15) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(251,100,30,0.08) 0%, transparent 50%),
-        var(--bg);
+      background-color: #FFE4D0;
+      background-image: radial-gradient(circle, rgba(244,149,106,0.5) 1.5px, transparent 1.5px);
+      background-size: 24px 24px;
+      border-bottom: 3px solid var(--border);
       position: relative;
     }
     .hero-emoji { font-size: 52px; margin-bottom: 20px; line-height: 1; }
     .hero h1 {
-      font-size: clamp(44px, 9vw, 88px);
-      font-weight: 900;
-      letter-spacing: -2px;
-      line-height: 1.05;
-      background: linear-gradient(140deg, #fff3e0 10%, var(--orange) 45%, #f43f5e 90%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 16px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(18px, 3.5vw, 36px);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--border);
+      margin-bottom: 20px;
     }
     .hero-sub {
-      font-size: 17px;
-      color: #9090a8;
+      font-size: 12px;
+      color: var(--muted);
       font-weight: 400;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.5px;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      padding: 8px 18px;
+      border-radius: 4px;
     }
 
     /* ─── Layout ─── */
     .section {
       max-width: 1160px;
       margin: 0 auto;
-      padding: 56px 24px;
+      padding: 52px 24px;
     }
     .section-label {
-      font-size: 11px;
+      font-size: 9px;
       font-weight: 700;
       letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: #606078;
-      margin-bottom: 22px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: var(--muted);
+      opacity: 0.25;
     }
 
     /* ─── Stat Cards ─── */
@@ -91,63 +100,61 @@
     }
     .card {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 22px 22px 20px;
+      border: 2.5px solid var(--border);
+      border-radius: 8px;
+      padding: 28px 22px 20px;
       position: relative;
       overflow: hidden;
-      transition: transform 0.15s;
+      box-shadow: var(--shadow);
+      transition: transform 0.1s, box-shadow 0.1s;
     }
-    .card:hover { transform: translateY(-2px); }
-    .card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 18px;
-      opacity: 0;
-      transition: opacity 0.15s;
+    .card:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0 var(--border);
     }
     .card-accent {
-      width: 36px; height: 4px;
-      border-radius: 999px;
-      margin-bottom: 16px;
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      border-radius: 0;
     }
-    .c-teal .card-accent { background: var(--teal); box-shadow: 0 0 12px var(--teal-glow); }
-    .c-orange .card-accent { background: var(--orange); box-shadow: 0 0 12px var(--orange-glow); }
-    .c-purple .card-accent { background: var(--purple); box-shadow: 0 0 12px var(--purple-glow); }
-    .c-white .card-accent { background: linear-gradient(90deg, var(--orange), #f43f5e); }
+    .c-teal .card-accent { background: var(--teal); }
+    .c-orange .card-accent { background: var(--orange); }
+    .c-purple .card-accent { background: var(--purple); }
+    .c-white .card-accent { background: var(--yellow); }
 
     .card-label {
-      font-size: 11px;
+      font-size: 9px;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: #606078;
+      color: var(--muted);
       margin-bottom: 8px;
     }
     .card-value {
-      font-size: 38px;
-      font-weight: 900;
+      font-size: 36px;
+      font-weight: 700;
       letter-spacing: -1px;
       line-height: 1;
       margin-bottom: 5px;
     }
-    .c-teal .card-value { color: var(--teal); }
-    .c-orange .card-value { color: var(--orange); }
-    .c-purple .card-value { color: var(--purple); }
+    .c-teal .card-value { color: #3A9E94; }
+    .c-orange .card-value { color: #C4622A; }
+    .c-purple .card-value { color: #7B56B8; }
     .c-white .card-value { color: var(--text); }
-    .card-sub { font-size: 12px; color: #60607a; line-height: 1.4; }
+    .card-sub { font-size: 11px; color: var(--muted); line-height: 1.4; }
 
     /* ─── Chart Panels ─── */
     .panel {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
+      border: 2.5px solid var(--border);
+      border-radius: 8px;
       padding: 28px 28px 24px;
       margin-bottom: 20px;
+      box-shadow: var(--shadow);
     }
-    .panel h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
-    .panel-sub { font-size: 12px; color: #60607a; margin-bottom: 22px; }
+    .panel h3 { font-size: 13px; font-weight: 700; margin-bottom: 4px; letter-spacing: 0.5px; }
+    .panel-sub { font-size: 11px; color: var(--muted); margin-bottom: 22px; }
 
     .legend {
       display: flex; gap: 18px; flex-wrap: wrap;
@@ -155,9 +162,9 @@
     }
     .legend-item {
       display: flex; align-items: center; gap: 7px;
-      font-size: 12px; font-weight: 600; color: #9090a8;
+      font-size: 11px; font-weight: 600; color: var(--muted);
     }
-    .legend-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 2px; border: 1.5px solid var(--border); }
 
     .chart-box { position: relative; width: 100%; }
     .chart-scroll { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
@@ -171,21 +178,22 @@
     }
     .milestone {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
+      border: 2.5px solid var(--border);
+      border-radius: 8px;
       padding: 22px;
       display: flex;
       align-items: center;
       gap: 18px;
+      box-shadow: var(--shadow);
     }
-    .ms-icon { font-size: 30px; flex-shrink: 0; }
+    .ms-icon { font-size: 28px; flex-shrink: 0; }
     .ms-label {
-      font-size: 11px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 1.5px;
-      color: #606078; margin-bottom: 4px;
+      font-size: 9px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: var(--muted); margin-bottom: 4px;
     }
-    .ms-value { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
-    .ms-detail { font-size: 12px; color: #60607a; margin-top: 2px; }
+    .ms-value { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+    .ms-detail { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
     /* ─── Monthly breakdown table ─── */
     .month-grid {
@@ -195,26 +203,28 @@
     }
     .month-cell {
       background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
       padding: 14px 16px;
+      box-shadow: 3px 3px 0 var(--border);
     }
-    .mc-name { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
-    .mc-row { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 3px; }
-    .mc-row span:first-child { color: #606078; }
-    .mc-row span:last-child { font-weight: 600; }
+    .mc-name { font-size: 10px; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1.5px; }
+    .mc-row { display: flex; justify-content: space-between; font-size: 10px; margin-bottom: 3px; }
+    .mc-row span:first-child { color: var(--muted); }
+    .mc-row span:last-child { font-weight: 700; }
 
     /* ─── Footer ─── */
     footer {
       text-align: center;
       padding: 36px 24px;
-      font-size: 12px;
-      color: #404058;
-      border-top: 1px solid var(--border);
+      font-size: 10px;
+      color: var(--muted);
+      border-top: 3px solid var(--border);
     }
 
     @media (max-width: 600px) {
       .hero { padding: 60px 16px 50px; }
+      .hero h1 { font-size: clamp(14px, 4vw, 22px); }
       .section { padding: 40px 16px; }
       .panel { padding: 20px 16px 18px; }
     }
@@ -230,76 +240,41 @@
 
       body {
         background: #fff !important;
-        color: #111 !important;
+        color: #2C1810 !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
 
       :root {
         --bg: #fff;
-        --surface: #f5f5f7;
-        --surface2: #ebebef;
-        --border: rgba(0,0,0,0.1);
-        --text: #111;
-        --teal: #0d9488;
-        --teal-glow: rgba(13,148,136,0.15);
-        --orange: #ea580c;
-        --orange-glow: rgba(234,88,12,0.15);
-        --purple: #9333ea;
-        --purple-glow: rgba(147,51,234,0.15);
+        --surface: #faf6f0;
+        --surface2: #f0e8dc;
+        --border: rgba(44,24,16,0.3);
+        --shadow: 3px 3px 0 rgba(44,24,16,0.2);
+        --text: #2C1810;
+        --muted: #8B6E4E;
+        --teal: #3A9E94;
+        --orange: #C4622A;
+        --purple: #7B56B8;
+        --yellow: #D4A830;
       }
 
       .hero {
-        background: linear-gradient(135deg, #fff3e0 0%, #ffe0cc 100%) !important;
+        background-color: #FFF3EC !important;
+        background-image: none !important;
         min-height: 220px !important;
         padding: 40px 24px !important;
         break-inside: avoid;
+        border-bottom: 2px solid rgba(44,24,16,0.3) !important;
       }
 
-      .hero h1 {
-        background: linear-gradient(140deg, #c2410c 10%, #ea580c 90%) !important;
-        -webkit-background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
-        background-clip: text !important;
-        font-size: 52px !important;
-      }
+      .hero h1 { color: #2C1810 !important; font-size: 22px !important; }
+      .hero-sub { color: #8B6E4E !important; }
 
-      .hero-sub { color: #555 !important; }
+      .card { break-inside: avoid; }
+      .panel { break-inside: avoid; page-break-inside: avoid; }
+      .milestone { break-inside: avoid; }
 
-      .card {
-        background: #f5f5f7 !important;
-        border-color: rgba(0,0,0,0.12) !important;
-        break-inside: avoid;
-      }
-      .card-sub { color: #555 !important; }
-
-      .panel {
-        background: #f5f5f7 !important;
-        border-color: rgba(0,0,0,0.12) !important;
-        break-inside: avoid;
-        page-break-inside: avoid;
-      }
-      .panel-sub, .section-label { color: #666 !important; }
-
-      .milestone {
-        background: #f5f5f7 !important;
-        border-color: rgba(0,0,0,0.12) !important;
-        break-inside: avoid;
-      }
-      .ms-detail { color: #555 !important; }
-
-      .month-cell {
-        background: #ebebef !important;
-        border-color: rgba(0,0,0,0.1) !important;
-      }
-      .mc-row span:first-child { color: #555 !important; }
-
-      footer {
-        color: #888 !important;
-        border-top-color: rgba(0,0,0,0.1) !important;
-      }
-
-      /* Prevent scrollable chart from clipping */
       .chart-scroll {
         overflow: visible !important;
         height: auto !important;
@@ -757,9 +732,9 @@ const MONTHS = ['January','February','March','April','May','June','July','August
 const MONTH_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 // Chart.js global defaults
-Chart.defaults.font.family = "'Inter', system-ui, sans-serif";
-Chart.defaults.color = '#70708a';
-Chart.defaults.borderColor = 'rgba(255,255,255,0.05)';
+Chart.defaults.font.family = "'Space Mono', 'Courier New', monospace";
+Chart.defaults.color = '#8B6E4E';
+Chart.defaults.borderColor = 'rgba(44,24,16,0.1)';
 
 Papa.parse(CSV, {
   header: true,
@@ -860,7 +835,7 @@ Papa.parse(CSV, {
         <div class="ms-icon">🏆</div>
         <div>
           <div class="ms-label">Best Single Day</div>
-          <div class="ms-value" style="color:var(--orange)">${bestDay.listening} min</div>
+          <div class="ms-value" style="color:#C4622A">${bestDay.listening} min</div>
           <div class="ms-detail">${bestDay.month} ${bestDay.day}</div>
         </div>
       </div>
@@ -868,7 +843,7 @@ Papa.parse(CSV, {
         <div class="ms-icon">📅</div>
         <div>
           <div class="ms-label">Best Month</div>
-          <div class="ms-value" style="color:var(--orange)">${bestMonth}</div>
+          <div class="ms-value" style="color:#C4622A">${bestMonth}</div>
           <div class="ms-detail">${byMonth[bestMonth].L.toLocaleString()} listening min</div>
         </div>
       </div>
@@ -876,7 +851,7 @@ Papa.parse(CSV, {
         <div class="ms-icon">🔥</div>
         <div>
           <div class="ms-label">Longest Streak</div>
-          <div class="ms-value" style="color:var(--orange)">${longestStreak} days</div>
+          <div class="ms-value" style="color:#C4622A">${longestStreak} days</div>
           <div class="ms-detail">consecutive listening days</div>
         </div>
       </div>
@@ -884,7 +859,7 @@ Papa.parse(CSV, {
         <div class="ms-icon">📊</div>
         <div>
           <div class="ms-label">Avg on Active Days</div>
-          <div class="ms-value" style="color:var(--orange)">${Math.round(totalL / lActiveDays)} min</div>
+          <div class="ms-value" style="color:#C4622A">${Math.round(totalL / lActiveDays)} min</div>
           <div class="ms-detail">listening per active day</div>
         </div>
       </div>
@@ -892,7 +867,7 @@ Papa.parse(CSV, {
         <div class="ms-icon">⚡</div>
         <div>
           <div class="ms-label">Year Avg / Day</div>
-          <div class="ms-value" style="color:var(--orange)">${Math.round(totalL / daysTracked)} min</div>
+          <div class="ms-value" style="color:#C4622A">${Math.round(totalL / daysTracked)} min</div>
           <div class="ms-detail">listening across all 366 days</div>
         </div>
       </div>
@@ -900,7 +875,7 @@ Papa.parse(CSV, {
         <div class="ms-icon">🎯</div>
         <div>
           <div class="ms-label">Skills Practiced</div>
-          <div class="ms-value" style="color:var(--purple)">3 skills</div>
+          <div class="ms-value" style="color:#7B56B8">3 skills</div>
           <div class="ms-detail">Listening · Reading · Speaking</div>
         </div>
       </div>
@@ -913,10 +888,10 @@ Papa.parse(CSV, {
       return `
         <div class="month-cell">
           <div class="mc-name">${m}</div>
-          <div class="mc-row"><span>Listening</span><span style="color:var(--orange)">${d.L.toLocaleString()} min</span></div>
-          ${d.R > 0 ? `<div class="mc-row"><span>Reading</span><span style="color:var(--teal)">${d.R.toLocaleString()} min</span></div>` : ''}
-          ${d.S > 0 ? `<div class="mc-row"><span>Speaking</span><span style="color:var(--purple)">${d.S.toLocaleString()} min</span></div>` : ''}
-          <div class="mc-row" style="margin-top:6px;border-top:1px solid rgba(255,255,255,0.05);padding-top:6px">
+          <div class="mc-row"><span>Listening</span><span style="color:#C4622A">${d.L.toLocaleString()} min</span></div>
+          ${d.R > 0 ? `<div class="mc-row"><span>Reading</span><span style="color:#3A9E94">${d.R.toLocaleString()} min</span></div>` : ''}
+          ${d.S > 0 ? `<div class="mc-row"><span>Speaking</span><span style="color:#7B56B8">${d.S.toLocaleString()} min</span></div>` : ''}
+          <div class="mc-row" style="margin-top:6px;border-top:1px solid rgba(44,24,16,0.15);padding-top:6px">
             <span>Total</span><span>${fmtHM(total)}</span>
           </div>
         </div>`;
@@ -930,9 +905,9 @@ Papa.parse(CSV, {
       data: {
         labels: MONTH_SHORT,
         datasets: [
-          { label: 'Listening', data: MONTHS.map(m => byMonth[m].L), backgroundColor: 'rgba(251,146,60,0.85)',  borderRadius: 5, borderSkipped: false },
-          { label: 'Reading',   data: MONTHS.map(m => byMonth[m].R), backgroundColor: 'rgba(45,212,191,0.85)', borderRadius: 5, borderSkipped: false },
-          { label: 'Speaking',  data: MONTHS.map(m => byMonth[m].S), backgroundColor: 'rgba(192,132,252,0.85)', borderRadius: 5, borderSkipped: false },
+          { label: 'Listening', data: MONTHS.map(m => byMonth[m].L), backgroundColor: 'rgba(244,149,106,0.88)', borderColor: '#2C1810', borderWidth: 1.5, borderRadius: 3, borderSkipped: false },
+          { label: 'Reading',   data: MONTHS.map(m => byMonth[m].R), backgroundColor: 'rgba(91,191,181,0.88)',  borderColor: '#2C1810', borderWidth: 1.5, borderRadius: 3, borderSkipped: false },
+          { label: 'Speaking',  data: MONTHS.map(m => byMonth[m].S), backgroundColor: 'rgba(184,159,216,0.88)', borderColor: '#2C1810', borderWidth: 1.5, borderRadius: 3, borderSkipped: false },
         ]
       },
       options: {
@@ -944,8 +919,8 @@ Papa.parse(CSV, {
           }
         },
         scales: {
-          x: { grid: { display: false }, ticks: { font: { size: 12 } } },
-          y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { callback: v => v >= 1000 ? (v/1000).toFixed(0)+'k' : v, font: { size: 11 } } }
+          x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+          y: { grid: { color: 'rgba(44,24,16,0.08)' }, ticks: { callback: v => v >= 1000 ? (v/1000).toFixed(0)+'k' : v, font: { size: 11 } } }
         }
       }
     });
@@ -963,14 +938,14 @@ Papa.parse(CSV, {
     // Alternate shade per month
     const barColors = rows.map(r => {
       const idx = MONTHS.indexOf(r.month);
-      return idx % 2 === 0 ? 'rgba(251,146,60,0.85)' : 'rgba(251,146,60,0.55)';
+      return idx % 2 === 0 ? 'rgba(244,149,106,0.9)' : 'rgba(244,149,106,0.55)';
     });
 
     new Chart(dailyCanvas, {
       type: 'bar',
       data: {
         labels: dailyLabels,
-        datasets: [{ label: 'Listening', data: rows.map(r => r.listening), backgroundColor: barColors, borderRadius: 2, borderSkipped: false }]
+        datasets: [{ label: 'Listening', data: rows.map(r => r.listening), backgroundColor: barColors, borderColor: '#2C1810', borderWidth: 0.5, borderRadius: 1, borderSkipped: false }]
       },
       options: {
         responsive: false, animation: false,
@@ -980,7 +955,7 @@ Papa.parse(CSV, {
         },
         scales: {
           x: { grid: { display: false }, ticks: { maxTicksLimit: 14, maxRotation: 0, font: { size: 11 } } },
-          y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { font: { size: 11 } } }
+          y: { grid: { color: 'rgba(44,24,16,0.08)' }, ticks: { font: { size: 11 } } }
         }
       }
     });
@@ -999,11 +974,11 @@ Papa.parse(CSV, {
         datasets: [{
           label: 'Total hours',
           data: cumData,
-          borderColor: '#fb923c',
+          borderColor: '#C4622A',
           backgroundColor: ctx => {
             const g = ctx.chart.ctx.createLinearGradient(0, 0, 0, 260);
-            g.addColorStop(0, 'rgba(251,146,60,0.30)');
-            g.addColorStop(1, 'rgba(251,146,60,0)');
+            g.addColorStop(0, 'rgba(244,149,106,0.40)');
+            g.addColorStop(1, 'rgba(244,149,106,0.02)');
             return g;
           },
           borderWidth: 2.5,
@@ -1031,10 +1006,10 @@ Papa.parse(CSV, {
         scales: {
           x: {
             grid: { display: false },
-            ticks: { maxRotation: 0, font: { size: 12 } }
+            ticks: { maxRotation: 0, font: { size: 11 } }
           },
           y: {
-            grid: { color: 'rgba(255,255,255,0.04)' },
+            grid: { color: 'rgba(44,24,16,0.08)' },
             ticks: { callback: v => v + 'h', font: { size: 11 } }
           }
         }
