@@ -218,6 +218,131 @@
       .section { padding: 40px 16px; }
       .panel { padding: 20px 16px 18px; }
     }
+
+    /* ─── PDF Button ─── */
+    .pdf-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 1000;
+      background: var(--orange);
+      color: #0a0a0f;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 22px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(251,146,60,0.4);
+      transition: transform 0.15s, box-shadow 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pdf-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(251,146,60,0.55); }
+    .pdf-btn svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+
+    /* ─── Print / PDF styles ─── */
+    @media print {
+      @page {
+        size: A4;
+        margin: 15mm 12mm;
+      }
+
+      .pdf-btn { display: none !important; }
+
+      body {
+        background: #fff !important;
+        color: #111 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      :root {
+        --bg: #fff;
+        --surface: #f5f5f7;
+        --surface2: #ebebef;
+        --border: rgba(0,0,0,0.1);
+        --text: #111;
+        --teal: #0d9488;
+        --teal-glow: rgba(13,148,136,0.15);
+        --orange: #ea580c;
+        --orange-glow: rgba(234,88,12,0.15);
+        --purple: #9333ea;
+        --purple-glow: rgba(147,51,234,0.15);
+      }
+
+      .hero {
+        background: linear-gradient(135deg, #fff3e0 0%, #ffe0cc 100%) !important;
+        min-height: 220px !important;
+        padding: 40px 24px !important;
+        break-inside: avoid;
+      }
+
+      .hero h1 {
+        background: linear-gradient(140deg, #c2410c 10%, #ea580c 90%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+        font-size: 52px !important;
+      }
+
+      .hero-sub { color: #555 !important; }
+
+      .card {
+        background: #f5f5f7 !important;
+        border-color: rgba(0,0,0,0.12) !important;
+        break-inside: avoid;
+      }
+      .card-sub { color: #555 !important; }
+
+      .panel {
+        background: #f5f5f7 !important;
+        border-color: rgba(0,0,0,0.12) !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .panel-sub, .section-label { color: #666 !important; }
+
+      .milestone {
+        background: #f5f5f7 !important;
+        border-color: rgba(0,0,0,0.12) !important;
+        break-inside: avoid;
+      }
+      .ms-detail { color: #555 !important; }
+
+      .month-cell {
+        background: #ebebef !important;
+        border-color: rgba(0,0,0,0.1) !important;
+      }
+      .mc-row span:first-child { color: #555 !important; }
+
+      footer {
+        color: #888 !important;
+        border-top-color: rgba(0,0,0,0.1) !important;
+      }
+
+      /* Prevent scrollable chart from clipping */
+      .chart-scroll {
+        overflow: visible !important;
+        height: auto !important;
+      }
+      .chart-scroll canvas {
+        max-width: 100% !important;
+        width: 100% !important;
+        height: 180px !important;
+      }
+
+      .chart-box { break-inside: avoid; }
+
+      .cards { grid-template-columns: repeat(3, 1fr) !important; }
+      .milestones { grid-template-columns: repeat(2, 1fr) !important; }
+      .month-grid { grid-template-columns: repeat(4, 1fr) !important; }
+
+      .section { padding: 28px 0 !important; }
+    }
   </style>
 </head>
 <body>
@@ -284,6 +409,13 @@
 <footer>
   2025 Spanish Tracking · Built with Chart.js
 </footer>
+
+<button class="pdf-btn" onclick="window.print()">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 16l-5-5 1.41-1.41L11 13.17V4h2v9.17l2.59-2.58L17 11l-5 5zm-6 4v-2h12v2H6z"/>
+  </svg>
+  Save as PDF
+</button>
 
 <script>
 const CSV = `Year,Month,Day,Listening,Reading,Speaking,Writing
